@@ -1,0 +1,27 @@
+.my-custom-menu {
+    --width: 500px;
+  }
+  ion-icon {
+      color:#2AB804;
+  }
+
+  .icono{
+    fill:#ff0000;
+    width: 24px;
+
+  }
+  #map-template {
+    height: 100%;
+    z-index: 0;
+   }
+/* .ion-padding{
+  padding-top: ;
+} */
+.cardReport{
+  margin: 6px;
+  padding: 14px;
+  background-color: rgb(255, 255, 255);
+}
+.toolBarCard{
+  --ion-background-color: rgb(206, 180, 180);
+}

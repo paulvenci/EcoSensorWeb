@@ -1,0 +1,27 @@
+<!-- List of Text Items -->
+<ion-content>
+    <ion-toolbar>
+        <ion-title>
+            <h1>Tablero</h1>
+        </ion-title>
+    </ion-toolbar>
+    <ion-grid id="contenidoTablero">
+
+        <ion-row>
+            <ion-col size-md="8" offset-md="2">
+                <ion-list id="cards">
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<script>
+    clearInterval(myVar);
+    cargaTableroON();
+    myVar = setInterval(tableroTime, 5000);
+    iniciaCargando();
+    function tableroTime() {
+        estadoDispositivo('paulvenci@gmail.com')
+    }
+
+</script>
