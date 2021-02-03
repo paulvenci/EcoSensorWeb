@@ -1,20 +1,18 @@
 <!-- List of Text Items -->
-<ion-content>
-    <ion-toolbar>
-        <ion-title>
-            <h1>Tablero</h1>
-        </ion-title>
-    </ion-toolbar>
-    <ion-grid id="contenidoTablero">
 
-        <ion-row>
-            <ion-col size-md="8" offset-md="2">
-                <ion-list id="cards">
-                </ion-list>
-            </ion-col>
+<ion-toolbar color="primary">
+    <ion-title>Detalle</ion-title>
+</ion-toolbar>
+<ion-content>
+
+    <ion-grid style="padding: 5px;" id="contenidoTablero">
+
+        <ion-row id="cards">
+
         </ion-row>
     </ion-grid>
 </ion-content>
+
 <script>
     clearInterval(myVar);
     cargaTableroON();

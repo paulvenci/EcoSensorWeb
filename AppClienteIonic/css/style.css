@@ -1,12 +1,16 @@
 .my-custom-menu {
     --width: 500px;
   }
-  ion-icon {
-      color:#2AB804;
+  icon-danger {
+      color:#ff0000;
+
   }
+  ion-icon-theme {
+    color:#2bff00;
+}
 
   .icono{
-    fill:#ff0000;
+    fill:#2bff00;
     width: 24px;
 
   }
@@ -24,4 +28,20 @@
 }
 .toolBarCard{
   --ion-background-color: rgb(206, 180, 180);
+}
+
+.rowCard{
+  margin: 0px;
+  padding: 0px;
+}
+.divCard{
+  margin: -5px;
+  padding: 1px;
+  font-size:12pt;
+}
+.hrCard{
+  margin: 0px;
+  padding: 0px;
+  background-color: rgb(255, 255, 255);
+  height: 1px;
 }

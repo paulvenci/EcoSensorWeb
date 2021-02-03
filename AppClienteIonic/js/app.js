@@ -2,6 +2,8 @@
 let myVar;
 let dispositivos = [];
 let timerIniciado;
+let tarjetaCreada;
+tarjetaCreada = false;
 async function openMenu() {
   await menuController.open();
 }
@@ -22,7 +24,7 @@ function cargaSocketEmit() {
 }
 
 
-customElements.define('modal-content', class ModalContent extends HTMLElement {
+customElements.define('modal-content1', class ModalContent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <ion-content fullscreen>
@@ -60,7 +62,7 @@ let currentModal = null;
 
 async function createModal() {
   const modal = await modalController.create({
-    component: 'modal-content'
+    component: 'modal-content1'
   });
 
   await modal.present();

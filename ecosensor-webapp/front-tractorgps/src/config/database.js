@@ -5,11 +5,11 @@ var mysqlConnection = mysql.createPool({
     connectionLimit: 100,
     waitForConnections: true,
     queueLimit: 0,
-    host: '45.236.131.228', //process.env.HOST_DB, // DB Claudio
-    user: 'root',//process.env.USER_DB, // DB Claudio
-    password: 'uvas8827',//process.env.PASS_DB, // DB Claudio
-    database: 'tractordevice',//process.env.DATABASE_NAME,
-    port: 3306,//process.env.PORT_DB, //
+    host: process.env.HOST_DB,
+    user: process.env.USER_DB,
+    password: process.env.PASS_DB,
+    database: process.env.DATABASE_NAME,
+    port: process.env.PORT_DB,
     debug: false,
     wait_timeout: 28800,
     connect_timeout: 10,

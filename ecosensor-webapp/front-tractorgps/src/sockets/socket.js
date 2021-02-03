@@ -300,7 +300,7 @@ io.on('connection', function (socket) {
             reporteFinal.push(evento);
             reporteFinal.push(termino);
             console.log(reporteFinal);
-
+            socket.emit('reporteVehiculo', { reporteFinal });
 
         }, (err) => {
             // Error en

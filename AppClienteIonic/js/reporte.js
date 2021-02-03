@@ -21,6 +21,8 @@ function muestraReporteEmit() {
 }
 function cargaReporteON() {
     socket.on('reporteVehiculo', (data) => {
+        console.log(data);
 
     })
 }
+

@@ -2,144 +2,150 @@
 <ion-content>
 
     <ion-grid>
-        <ion-row>
-            <ion-col size-md="8" offset-md="2">
-                <ion-list>
-                    <ion-item>
-                        <ion-label>Tipo de reporte</ion-label>
-                        <ion-select id="tipoReporteSelect" interface="popover">
-                            <ion-select-option value="vehiculo" onchange="alerta();">Vehículo</ion-select-option>
-                            <ion-select-option value="operario">Operario</ion-select-option>
-                            <ion-select-option value="velocidad">Velocidad</ion-select-option>
-                            <ion-select-option value="distancia">Distancia</ion-select-option>
-                        </ion-select>
-                    </ion-item>
+        <ion-col size="6">
+            <ion-row>
 
-                    <ion-item-divider style="background-color: azure;">
-                        <ion-label style="color: black;"> Rango de fechas </ion-label>
-                    </ion-item-divider>
-                    <ion-item lines="none">
-                        <ion-label>Fecha inicio</ion-label>
-                        <ion-datetime id="fechaInicio" display-format="DD / MM / YYYY H:mm" min="2020" max="2050"
-                            placeholder="Fecha inicio">
-                        </ion-datetime>
-                    </ion-item>
-                    <ion-item lines="none">
-                        <ion-label>Fecha término</ion-label>
-                        <ion-datetime id="fechaTermino" display-format="DD / MM / YYYY H:mm" min="2020" max="2050"
-                            placeholder="Fecha término"></ion-datetime>
-                    </ion-item>
-
-                    <ion-button>Limpiar</ion-button>
-                    <ion-button onclick="muestraReporteEmit()">Aceptar</ion-button>
-
-                </ion-list>
-
-                <!-- Fin -->
-                <!-- Fecha, Hora, Posición, Estado completo-->
-                <ion-card style="background-color: rgb(255, 202, 103);">
-                    <ion-card-header>
-                        <ion-card-title>Fin trayecto</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-
-                        <ion-toolbar class="toolBarCard">
-                            <h2>16/02/1981, 18:00</h2>
-                            <ion-buttons slot="start">
-                                <ion-button>
-                                    <ion-icon name="calendar"></ion-icon>
-                                </ion-button>
-                            </ion-buttons>
-                        </ion-toolbar>
-                        <ion-toolbar class="toolBarCard">
-                            <ion-buttons slot="start">
-                                <ion-button>
-                                    <ion-icon slot="icon-only" name="person"></ion-icon>
-                                </ion-button>
-                            </ion-buttons>
-                            <h2>Ingreso: Renato Martínez A.</h2>
-                        </ion-toolbar>
-                        <ion-toolbar class="toolBarCard">
-                            <ion-buttons slot="start">
-                                <ion-button>
-                                    <ion-icon name="location"></ion-icon>
-                                </ion-button>
-                            </ion-buttons>
-                            <h2>Lat: -654.454654, Lon: -788.987456</h2>
-                        </ion-toolbar>
-                    </ion-card-content>
+                <ion-title>Vehículos</ion-title>
+                <ion-card>
+                    tarjeta 1
                 </ion-card>
-
-                <ion-card style="background-color: rgb(255, 202, 103);">
-                    <ion-card-header>
-                        <ion-card-title> Eventos</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-
-                        <ion-card class="cardReport">
-                            <h2>16/02/1981, 18:00 </h2>
-                            <h2>Salida operario: Renato Martínez </h2>
-                        </ion-card>
-                        <ion-card class="cardReportGreen">
-                            <h2>16/02/1981, 18:00 </h2>
-                            <h2>Tapa combustible CERRADA</h2>
-                        </ion-card>
-                        <ion-card class="cardReportRed">
-                            <h2>16/02/1981, 18:00 </h2>
-                            <h2>Tapa combustible ABIERTA</h2>
-                        </ion-card>
-
-                        <ion-card class="cardReport">
-                            <ion-header>
-                                <ion-title>
-                                    Ingreso de operario
-                                </ion-title>
-                            </ion-header>
-
-                            <ion-toolbar class="toolBarCard">
-                                <ion-buttons slot="start">
-                                    <ion-button>
-                                        <ion-icon slot="icon-only" name="calendar"></ion-icon>
-                                    </ion-button>
-                                </ion-buttons>
-                                <h2>16/02/1981, 18:00</h2>
-                            </ion-toolbar>
-                            <ion-toolbar class="toolBarCard">
-                                <ion-buttons slot="start">
-                                    <ion-button>
-                                        <ion-icon slot="icon-only" name="person"></ion-icon>
-                                    </ion-button>
-                                </ion-buttons>
-                                <h2>Renato Martínez A.</h2>
-                            </ion-toolbar>
-                            <ion-toolbar class="toolBarCard">
-                                <ion-buttons slot="start">
-                                    <ion-button>
-                                        <ion-icon slot="icon-only" name="location"></ion-icon>
-                                    </ion-button>
-                                </ion-buttons>
-                                <h2>Lat: -654.454654, Lon: -788.987456</h2>
-                            </ion-toolbar>
-                        </ion-card>
-
-                    </ion-card-content>
+                <ion-card>
+                    tarjeta 2
                 </ion-card>
+                <ion-card> tarjeta 3 </ion-card>
+                <ion-card> tarjeta 4 </ion-card>
+            </ion-row>
+        </ion-col>
+    </ion-grid>
 
-                <!-- Eventos -->
-                <!-- Fecha, Hora, Posición estado cambiado -->
+    <ion-list>
 
-                <!-- Inicio -->
-                <!-- Fecha, Hora, Posición estado completo -->
+        <ion-item-divider style="background-color: azure;">
+            <ion-label style="color: black;"> Rango de fechas </ion-label>
+        </ion-item-divider>
+        <ion-item lines="none">
+            <ion-label>Fecha inicio</ion-label>
+            <ion-datetime id="fechaInicio" display-format="DD / MM / YYYY H:mm" min="2020" max="2050"
+                placeholder="Fecha inicio">
+            </ion-datetime>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label>Fecha término</ion-label>
+            <ion-datetime id="fechaTermino" display-format="DD / MM / YYYY H:mm" min="2020" max="2050"
+                placeholder="Fecha término"></ion-datetime>
+        </ion-item>
+
+        <ion-button>Limpiar</ion-button>
+        <ion-button onclick="muestraReporteEmit()">Aceptar</ion-button>
+
+    </ion-list>
+
+    <!-- Fin -->
+    <!-- Fecha, Hora, Posición, Estado completo-->
+    <ion-card style="background-color: rgb(255, 202, 103);">
+        <ion-card-header>
+            <ion-card-title>Fin trayecto</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+            <ion-toolbar class="toolBarCard">
+                <h2>16/02/1981, 18:00</h2>
+                <ion-buttons slot="start">
+                    <ion-button>
+                        <ion-icon name="calendar"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+            <ion-toolbar class="toolBarCard">
+                <ion-buttons slot="start">
+                    <ion-button>
+                        <ion-icon slot="icon-only" name="person"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <h2>Ingreso: Renato Martínez A.</h2>
+            </ion-toolbar>
+            <ion-toolbar class="toolBarCard">
+                <ion-buttons slot="start">
+                    <ion-button>
+                        <ion-icon name="location"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <h2>Lat: -654.454654, Lon: -788.987456</h2>
+            </ion-toolbar>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card style="background-color: rgb(255, 202, 103);">
+        <ion-card-header>
+            <ion-card-title> Eventos</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+            <ion-card class="cardReport">
+                <h2>16/02/1981, 18:00 </h2>
+                <h2>Salida operario: Renato Martínez </h2>
+            </ion-card>
+            <ion-card class="cardReportGreen">
+                <h2>16/02/1981, 18:00 </h2>
+                <h2>Tapa combustible CERRADA</h2>
+            </ion-card>
+            <ion-card class="cardReportRed">
+                <h2>16/02/1981, 18:00 </h2>
+                <h2>Tapa combustible ABIERTA</h2>
+            </ion-card>
+
+            <ion-card class="cardReport">
+                <ion-header>
+                    <ion-title>
+                        Ingreso de operario
+                    </ion-title>
+                </ion-header>
+
+                <ion-toolbar class="toolBarCard">
+                    <ion-buttons slot="start">
+                        <ion-button>
+                            <ion-icon slot="icon-only" name="calendar"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
+                    <h2>16/02/1981, 18:00</h2>
+                </ion-toolbar>
+                <ion-toolbar class="toolBarCard">
+                    <ion-buttons slot="start">
+                        <ion-button>
+                            <ion-icon slot="icon-only" name="person"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
+                    <h2>Renato Martínez A.</h2>
+                </ion-toolbar>
+                <ion-toolbar class="toolBarCard">
+                    <ion-buttons slot="start">
+                        <ion-button>
+                            <ion-icon slot="icon-only" name="location"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
+                    <h2>Lat: -654.454654, Lon: -788.987456</h2>
+                </ion-toolbar>
+            </ion-card>
+
+        </ion-card-content>
+    </ion-card>
+
+    <!-- Eventos -->
+    <!-- Fecha, Hora, Posición estado cambiado -->
+
+    <!-- Inicio -->
+    <!-- Fecha, Hora, Posición estado completo -->
 
 
 
 
 
 
-            </ion-col>
-        </ion-row>
+    </ion-col>
+    </ion-row>
     </ion-grid>
 </ion-content>
 <script>
     clearInterval(myVar);
+    cargaReporteON();
 </script>

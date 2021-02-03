@@ -51,11 +51,12 @@
                     <ion-title>Menu</ion-title>
                 </ion-toolbar>
             </ion-header>
-            <ion-content>
+            <ion-content fullscreen>
                 <ion-list>
                     <ion-item>
                         <ion-icon name="mail" slot="start"></ion-icon>
-                        <ion-label>Inbox</ion-label>
+                        <!-- Pagina informativa -->
+                        <ion-label>Home</ion-label>
                     </ion-item>
                     <ion-item>
                         <ion-icon name="paper-plane" slot="start"></ion-icon>
@@ -95,7 +96,7 @@
             <ion-content class="ion-padding">
                 <ion-tabs>
                     <ion-tab tab="tab-tablero">
-                        <ion-nav id="tablero"> </ion-nav>
+                        <ion-nav id="tablero" style="padding-bottom: 40px;"></ion-nav>
                     </ion-tab>
 
                     <ion-tab tab="tab-reporte">
@@ -154,6 +155,7 @@
     <script src="js/tablero.js"></script>
     <script src="js/reporte.js"></script>
     <script src="js/mapa.js"></script>
+
 </body>
 
 </html>
