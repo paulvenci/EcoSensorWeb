@@ -3,24 +3,16 @@
 </div>
 <script>
 
-    clearInterval(myVar);
-    cargaTableroON();
-    myVar = setInterval(tableroTime, 5000);
-    iniciaCargando();
-    function tableroTime() {
-        estadoDispositivo('paulvenci@gmail.com')
-    }
-
-
-    clearInterval(myVar);
+    clearInterval(timeMapa);
+    clearInterval(timeTablero);
     cargaMapaON();
-    myVar = setInterval(mapaTime, 5000);
+    timeMapa = setInterval(mapaTime, 5000);
     iniciaCargando();
+    mapaIniciado = false;
     function mapaTime() {
         estadoDispositivo('paulvenci@gmail.com')
     }
 
+    tarjetaCreada = false;
 
-
-   // iniciaMapa("-40.071362", "-72.872299");
 </script>

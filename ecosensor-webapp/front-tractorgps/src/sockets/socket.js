@@ -87,7 +87,17 @@ io.on('connection', function (socket) {
                     operadorNombre: val[i].operadorNombre,
                     operadorRut: val[i].operadorRut,
                     fecha: val[i].fecha,
-                    control1: val[i].control_estado
+                    control1: val[i].control_estado,
+                    vehiculo_nombre: val[i].vehiculo_nombre,
+                    vehiculo_patente: val[i].vehiculo_patente,
+                    vehiculo_marca: val[i].vehiculo_marca,
+                    vehiculo_modelo: val[i].vehiculo_modelo,
+                    vehiculo_color: val[i].vehiculo_color,
+                    vehiculo_tipo: val[i].vehiculo_tipo,
+                    vehiculo_km_inicial: val[i].vehiculo_km_inicial,
+                    vehiculo_año: val[i].vehiculo_año,
+                    vehiculo_dispositivo_imei: val[i].vehiculo_dispositivo_imei,
+                    vehiculo_horometro_inicial: val[i].vehiculo_horometro_inicial
                 }
                 dispositivos.push(item);
             }
@@ -153,31 +163,103 @@ io.on('connection', function (socket) {
             //   console.log(respuesta[respuesta.length - 1].fecha);
 
             // Inicio
+            strOperarioIni = 'Sin Operario a bordo'
+            if (respuesta[respuesta.length - 1].operadorNombre != null) {
+                strOperarioIni = respuesta[respuesta.length - 1].operadorNombre
+            }
+            strConAccIni = 'desconectado';
+            if (respuesta[respuesta.length - 1].conAcc == '0') {
+                strConAccIni = 'conectado';
+            }
+
+            strConBatIni = 'desconectado';
+            if (respuesta[respuesta.length - 1].conBat == '0') {
+                strConBatIni = 'conectado';
+            }
+
+            switch (respuesta[respuesta.length - 1].conComb) {
+                case '1':
+                    strConCombIni = 'sensor tapa de combustible intervenido'
+                    break;
+                case '2':
+                    strConCombIni = 'tapa cerrada'
+                    break;
+                case '3':
+                    strConCombIni = 'tapa abierta'
+                    break;
+            }
+
             var inicio = {
                 fechaHora: respuesta[respuesta.length - 1].fecha,
                 latitud: respuesta[respuesta.length - 1].latitud,
                 longitud: respuesta[respuesta.length - 1].longitud,
                 velocidad: respuesta[respuesta.length - 1].velocidad,
-                conAcc: respuesta[respuesta.length - 1].conAcc,
-                conBat: respuesta[respuesta.length - 1].conBat,
-                conComb: respuesta[respuesta.length - 1].conComb,
-                operadorNombre: respuesta[respuesta.length - 1].operadorNombre,
+                conAcc: strConAccIni,
+                conBat: strConBatIni,
+                conComb: strConCombIni,
+                operadorNombre: strOperarioIni,
                 operadorRut: respuesta[respuesta.length - 1].operadorRut,
-                control_estado: respuesta[respuesta.length - 1].control_estado
+                control_estado: respuesta[respuesta.length - 1].control_estado,
+                vehiculo_año: respuesta[respuesta.length - 1].vehiculo_ano,
+                vehiculo_color: respuesta[respuesta.length - 1].vehiculo_color,
+                vehiculo_patente: respuesta[respuesta.length - 1].vehiculo_patente,
+                vehiculo_dispositivo_imei: respuesta[respuesta.length - 1].vehiculo_dispositivo_imei,
+                vehiculo_horometro_inicial: respuesta[respuesta.length - 1].vehiculo_horometro_inicial,
+                vehiculo_km_inicial: respuesta[respuesta.length - 1].vehiculo_km_inicial,
+                vehiculo_marca: respuesta[respuesta.length - 1].vehiculo_marca,
+                vehiculo_modelo: respuesta[respuesta.length - 1].vehiculo_modelo,
+                vehiculo_nombre: respuesta[respuesta.length - 1].vehiculo_nombre,
+                vehiculo_tipo: respuesta[respuesta.length - 1].vehiculo_tipo
             }
 
             // Término
+            strOperarioFin = 'Sin Operario a bordo'
+            if (respuesta[0].operadorNombre != null) {
+                strOperarioFin = respuesta[0].operadorNombre
+            }
+
+            strConAccFin = 'desconectado';
+            if (respuesta[0].conAcc == '0') {
+                strConAccFin = 'conectado';
+            }
+
+            strConBatFin = 'desconectado';
+            if (respuesta[0].conBat == '0') {
+                strConBatFin = 'conectado';
+            }
+
+            switch (respuesta[0].conComb) {
+                case '1':
+                    strConCombFin = 'sensor tapa de combustible intervenido'
+                    break;
+                case '2':
+                    strConCombFin = 'tapa cerrada'
+                    break;
+                case '3':
+                    strConCombFin = 'tapa abierta'
+                    break;
+            }
             var termino = {
                 fechaHora: respuesta[0].fecha,
                 latitud: respuesta[0].latitud,
                 longitud: respuesta[0].longitud,
                 velocidad: respuesta[0].velocidad,
-                conAcc: respuesta[0].conAcc,
-                conBat: respuesta[0].conBat,
-                conComb: respuesta[0].conComb,
-                operadorNombre: respuesta[0].operadorNombre,
+                conAcc: strConAccFin,
+                conBat: strConBatFin,
+                conComb: strConCombFin,
+                operadorNombre: strOperarioFin,
                 operadorRut: respuesta[0].operadorRut,
-                control_estado: respuesta[0].control_estado
+                control_estado: respuesta[0].control_estado,
+                vehiculo_año: respuesta[0].vehiculo_ano,
+                vehiculo_color: respuesta[0].vehiculo_color,
+                vehiculo_patente: respuesta[0].vehiculo_patente,
+                vehiculo_dispositivo_imei: respuesta[0].vehiculo_dispositivo_imei,
+                vehiculo_horometro_inicial: respuesta[0].vehiculo_horometro_inicial,
+                vehiculo_km_inicial: respuesta[0].vehiculo_km_inicial,
+                vehiculo_marca: respuesta[0].vehiculo_marca,
+                vehiculo_modelo: respuesta[0].vehiculo_modelo,
+                vehiculo_nombre: respuesta[0].vehiculo_nombre,
+                vehiculo_tipo: respuesta[0].vehiculo_tipo
             }
             // Eventos
             let evento = [];

@@ -1,13 +1,11 @@
-let myMap;
-let mapaIniciado = false;
-let marker = [];
+
 function cargaMapa() {
     $('#mapa').load('html/mapa.html');
 }
 
 function cargaMapaON() {
     socket.on('estadoDispositivo', (data) => {
-        console.log('estadoDispositivo => On');
+        // console.log('estadoDispositivo => On');
         dispositivoListar(data);
         recargaMapa();
     });
@@ -17,11 +15,15 @@ function recargaMapa() {
     // Iniciar mapa
     // Si el mapa está iniciado, recaragar las marcas
     // Si no, cargar todas las marcas de los dispositivos
+    console.log('Mapa iniciado: ' + mapaIniciado);
 
     if (mapaIniciado) {
+        console.log('Recarga Mapa');
         // Recarga marca con nuevas posiciones
         recargaMarca()
     } else {
+        console.log('Inicia Mapa');
+
         // Inicia Mapa
         // GM1 => GoogleMaps camino
         // GM2 => GoogleMaps satelital

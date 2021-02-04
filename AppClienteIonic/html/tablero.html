@@ -14,9 +14,11 @@
 </ion-content>
 
 <script>
-    clearInterval(myVar);
+    tarjetaCreada = false;
+    clearInterval(timeTablero);
+    clearInterval(timeMapa);
     cargaTableroON();
-    myVar = setInterval(tableroTime, 5000);
+    timeTablero = setInterval(tableroTime, 5000);
     iniciaCargando();
     function tableroTime() {
         estadoDispositivo('paulvenci@gmail.com')

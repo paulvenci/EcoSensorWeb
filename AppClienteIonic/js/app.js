@@ -1,9 +1,18 @@
 
-let myVar;
+let timeTablero;
+let timeMapa;
 let dispositivos = [];
 let timerIniciado;
 let tarjetaCreada;
+let myMap;
+let mapaIniciado = false;
+let marker = [];
 tarjetaCreada = false;
+
+// Variables para reporte
+let vehiculo;
+let operario;
+
 async function openMenu() {
   await menuController.open();
 }

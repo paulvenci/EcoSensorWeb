@@ -2,10 +2,28 @@ function cargaTablero() {
     console.log('tab');
     $('#tablero').load('html/tablero.html');
     cargaTableroCard();
+
 }
 
 function actualizaTablero() {
+    for (var i = 0; i < dispositivos.length; i++) {
+        var ultConexion = document.querySelector("#ultConexion-" + String(i));
+        var operadorNombre = document.querySelector("#operadorNombre-" + String(i));
+        var velocidad = document.querySelector("#velocidad-" + String(i));
+        var conAcc = document.querySelector("#conAcc-" + String(i));
+        var conBat = document.querySelector("#conBat-" + String(i));
+        var conTap = document.querySelector("#conTap-" + String(i));
+        var imei = document.querySelector("#imei-" + String(i));
 
+
+        ultConexion.textContent = 'Últ. conexión: ' + dispositivos[i].fecha;
+        operadorNombre.textContent = dispositivos[i].operadorNombre;
+        velocidad.textContent = dispositivos[i].velocidad;
+        conAcc.textContent = dispositivos[i].conAcc;
+        conBat.textContent = dispositivos[i].conBat;
+        conTap.textContent = dispositivos[i].conComb;
+        imei.textContent = dispositivos[i].imei;
+    }
 }
 
 function cargaTableroCard() {
@@ -21,12 +39,11 @@ function cargaTableroCard() {
         <ion-col class="ion-no-padding" size="12" size-lg="3" size-sm="6">
         <ion-card style="background-color: rgb(236, 236, 236);">
             <ion-card-header>
-                <ion-button fill="clear" expand="full">
+                <ion-button fill="clear" expand="full" id="tipoMarcaModelo-` + String(i) + `>
                     <ion-icon slot="start" name="car" size="large"></ion-icon>
-                    Tractor - Ford 350
+                    ` + dispositivos[i].vehiculo_tipo + ' ' + dispositivos[i].vehiculo_marca + ' ' + dispositivos[i].vehiculo_modelo + `
                 </ion-button>
-                <ion-card-subtitle id="ultConexion-`+ String(i) + `"> Últ. conexión: ` + dispositivos[i].fecha + ` </ion-card-subtitle>
-
+                <ion-card-subtitle class="ion-text-center" id="ultConexion-`+ String(i) + `"> Últ. conexión: ` + dispositivos[i].fecha + ` </ion-card-subtitle>
             </ion-card-header>
             <ion-grid>
                 <ion-row class="rowCard">
@@ -34,7 +51,7 @@ function cargaTableroCard() {
                         <ion-label class="divCard">Patente</ion-label>
                     </ion-col>
                     <ion-col>
-                        <ion-label class="divCard">JCTY78</ion-label>
+                        <ion-label class="divCard" id="patente- ` + String(i) + `">` + dispositivos[i].vehiculo_patente.toUpperCase() + `</ion-label>
                     </ion-col>
                 </ion-row>
                 <hr class="hrCard">
@@ -84,7 +101,7 @@ function cargaTableroCard() {
                         <ion-label class="divCard">Tapa Comb</ion-label>
                     </ion-col>
                     <ion-col>
-                        <ion-label style="padding-right: 10px;" class="divCard" id="conBat-`+ String(i) + `">` + dispositivos[i].conComb + `</ion-label>
+                        <ion-label style="padding-right: 10px;" class="divCard" id="conTap-`+ String(i) + `">` + dispositivos[i].conComb + `</ion-label>
                         <ion-icon size="medium" color="danger" name="alert-circle">
                         </ion-icon>
                     </ion-col>
@@ -121,6 +138,7 @@ function cargaTableroCard() {
 
         console.log('Función dispositivoListar:');
         console.log(dispositivos);
+        tarjetaCreada = true;
     }
 
 }
@@ -128,7 +146,6 @@ function localizar(_id) {
     var idDis = _id.split('-', 2)
     //alert('Localizar ' + dispositivos[idDis[1]].latitud + ', ' + dispositivos[idDis[1]].longitud);
     createModal2(idDis[1]);
-
 }
 
 async function createModal2(_id) {
@@ -159,7 +176,7 @@ function cargaTableroON() {
             actualizaTablero();
         } else {
             cargaTableroCard();
-            tarjetaCreada = true;
+
         }
     });
 }

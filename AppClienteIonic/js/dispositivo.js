@@ -10,9 +10,8 @@ function estadoDispositivo(_userName) {
 
 //* FUNCION LISTAR DISPOSITIVOS
 function dispositivoListar(datos) {
-    console.log('DispositivoListar');
-    console.log(datos.dispositivos[0].operadorNombre);
 
+    console.log('DispositivoListar');
     dispositivos.length = 0;
 
     for (var i = 0; i < datos.dispositivos.length; i++) {
@@ -24,7 +23,7 @@ function dispositivoListar(datos) {
         if (datos.dispositivos[i].conBat == '1') { strConBat = 'Conectada' } else { strConBat = 'Desconectada!' };
 
         //* Nombre Operador
-        if (datos.dispositivos[i].operadorNombre == null) { strOperadorNombre = 'Sin Operario a bordo' } else { strOperadorNombre = datos.dispositivos[i].operadorNombre };
+        if (datos.dispositivos[i].operadorNombre == null) { strOperadorNombre = 'Sin Operario a bordo' } else { strOperadorNombre = datos.dispositivos[i].operadorNombre.toUpperCase() };
 
         //* Rut Operador
         if (datos.dispositivos[i].operadorRut == null) { strOperadorRut = 'Sin Operario a bordo' } else { strOperadorRut = datos.dispositivos[i].operadorRut };
@@ -77,9 +76,19 @@ function dispositivoListar(datos) {
             operadorNombre: strOperadorNombre,
             operadorRut: strOperadorRut,
             fecha: moment(datos.dispositivos[i].fecha).format('DD-MM-YYYY, HH:mm:ss'),
-            control1: strTextControl
+            control1: strTextControl,
+            vehiculo_nombre: datos.dispositivos[i].vehiculo_nombre,
+            vehiculo_patente: datos.dispositivos[i].vehiculo_patente,
+            vehiculo_marca: datos.dispositivos[i].vehiculo_marca,
+            vehiculo_modelo: datos.dispositivos[i].vehiculo_modelo,
+            vehiculo_color: datos.dispositivos[i].vehiculo_color,
+            vehiculo_tipo: datos.dispositivos[i].vehiculo_tipo,
+            vehiculo_km_inicial: datos.dispositivos[i].vehiculo_km_inicial,
+            vehiculo_año: datos.dispositivos[i].vehiculo_año,
+            vehiculo_dispositivo_imei: datos.dispositivos[i].vehiculo_dispositivo_imei,
+            vehiculo_horometro_inicial: datos.dispositivos[i].vehiculo_horometro_inicial
         }
         dispositivos.push(datosDispo);
-        console.log(datosDispo);
+        console.log(dispositivos);
     }
 }
