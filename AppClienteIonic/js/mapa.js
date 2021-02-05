@@ -39,7 +39,7 @@ function iniciaMarca() {
     for (var i = 0; i < dispositivos.length; i++) {
         var lati = parseFloat(dispositivos[i].latitud);
         var long = parseFloat(dispositivos[i].longitud);
-        marker[i] = L.marker([lati, long])
+        marker[i] = L.marker([lati, long], { icon: greenIcon })
             .addTo(myMap)
             .bindPopup(
                 '<strong>Operario</strong>: ' + dispositivos[i].operadorNombre + `<br>
