@@ -1,11 +1,47 @@
 .my-custom-menu {
     --width: 500px;
   }
-  ion-icon {
-      color:#2AB804;
+  icon-danger {
+      color:#ff0000;
+
   }
+  ion-icon-theme {
+    color:#2bff00;
+}
 
   .icono{
-    color:#2AB804;
+    fill:#2bff00;
+    width: 24px;
 
   }
+  #map-template {
+    height: 100%;
+    z-index: 0;
+   }
+/* .ion-padding{
+  padding-top: ;
+} */
+.cardReport{
+  margin: 6px;
+  padding: 14px;
+  background-color: rgb(255, 255, 255);
+}
+.toolBarCard{
+  --ion-background-color: rgb(212, 212, 212);
+}
+
+.rowCard{
+  margin: 0px;
+  padding: 0px;
+}
+.divCard{
+  margin: -5px;
+  padding: 1px;
+  font-size:12pt;
+}
+.hrCard{
+  margin: 0px;
+  padding: 0px;
+  background-color: rgb(255, 255, 255);
+  height: 1px;
+}

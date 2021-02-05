@@ -1,5 +1,96 @@
-<div>
-    <h2 class="w3-panel" style="background-color: aquamarine;"><i class="fas fa-tachometer-alt"
-            style="font-size: 24px; color:  rgb(255, 166, 0);"></i>&nbsp;Reportes
-    </h2>
-</div>
+<!-- List of Text Items -->
+<ion-content>
+    <ion-card>
+        <ion-card-title class="ion-text-center">Reporte de actividades</ion-card-title>
+        <ion-card-content>
+            <ion-radio-group value="vehiculo">
+                <ion-item lines="none">
+                    <ion-label>Vehiculo</ion-label>
+                    <ion-radio slot="end" value="vehiculo" onclick="habilitaVehiculoSel()"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Operario</ion-label>
+                    <ion-radio slot="end" value="operario" onclick="habilitaOperarioSel()"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+
+            <ion-list class="ion-padding-top">
+                <ion-item lines="none">
+                    <ion-label>Vehículo</ion-label>
+                    <ion-select id="selectVehiculo" interface="action-sheet"></ion-select>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-label>Operario</ion-label>
+                    <ion-select id="selectOperario" interface="action-sheet"></ion-select>
+                </ion-item>
+            </ion-list>
+
+        </ion-card-content>
+
+
+    </ion-card>
+    <ion-card>
+        <ion-card-title class="ion-text-center">Rango de fechas</ion-card-title>
+        <ion-list>
+
+            <ion-item lines="none">
+                <ion-label>Inicio</ion-label>
+                <ion-datetime id="fechaInicio" display-format="DD / MMMM / YYYY" min="2020" max="2050"
+                    placeholder="Fecha inicio">
+                </ion-datetime>
+                <ion-datetime id="horaInicio" display-format="HH:mm" placeholder="Hora inicio">
+                </ion-datetime>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label>Término</ion-label>
+                <ion-datetime id="fechaTermino" display-format="DD / MMMM / YYYY" min="2020" max="2050"
+                    placeholder="Fecha término">
+                </ion-datetime>
+                <ion-datetime id="horaTermino" display-format="HH:mm" placeholder="Hora término">
+                </ion-datetime>
+            </ion-item>
+
+            <ion-grid>
+                <ion-col>
+                    <ion-row class="ion-justify-content-center">
+                        <ion-button class="ion-margin" size="small" fill="outline" onclick="limpiarReporte();"
+                            id="btnPos-`+ String(i) + `">
+                            <ion-icon slot="start" name="trash-bin"></ion-icon> Limpiar
+                        </ion-button>
+                        <ion-button class="ion-margin" size="small" fill="outline" onclick="muestraReporteEmit()">
+                            <ion-icon slot="start" name="reader"></ion-icon> Reporte
+                        </ion-button>
+                    </ion-row>
+                </ion-col>
+            </ion-grid>
+
+        </ion-list>
+    </ion-card>
+    <div id="iniRep"></div>
+    <div id="eveRep"></div>
+    <div id="finRep"></div>
+
+    <!-- Fin -->
+    <!-- Fecha, Hora, Posición, Estado completo-->
+
+    <!-- Eventos -->
+    <!-- Fecha, Hora, Posición estado cambiado -->
+
+    <!-- Inicio -->
+    <!-- Fecha, Hora, Posición estado completo -->
+
+</ion-content>
+
+<script>
+
+    estadoDispositivo('paulvenci@gmail.com')
+    clearInterval(timeTablero);
+    clearInterval(timeMapa);
+
+    cargaReporteON();
+    tarjetaCreada = false;
+
+
+
+</script>

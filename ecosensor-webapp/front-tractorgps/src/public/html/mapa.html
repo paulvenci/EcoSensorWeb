@@ -1,1 +1,18 @@
-<div class="w3-container" id="map-template"></div>
+<div id="map-template">
+
+</div>
+<script>
+
+    clearInterval(timeMapa);
+    clearInterval(timeTablero);
+    cargaMapaON();
+    timeMapa = setInterval(mapaTime, 5000);
+    iniciaCargando();
+    mapaIniciado = false;
+    function mapaTime() {
+        estadoDispositivo('paulvenci@gmail.com')
+    }
+
+    tarjetaCreada = false;
+
+</script>

@@ -23,13 +23,13 @@ const server = app.listen(process.env.PORT, () => {
 
 
 //rutas
-app.use(require('./routes'));
+app.use(require('../routes'));
 
 //static files
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 //WebSocket
 const SocketIo = require('socket.io');
 module.exports.io = SocketIo(server);
-require('./sockets/socket');
+require('../sockets/socket');
