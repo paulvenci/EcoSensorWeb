@@ -2,18 +2,18 @@ const mysql = require("mysql");
 const logger = require('../libs/logger');
 const path = require('path');
 
-const NODE_ENV = process.env.NODE_ENV || 'env';
-require('dotenv').config({ path: + __dirname + '/.env' + NODE_ENV });
+//const NODE_ENV = process.env.NODE_ENV || 'env';
+//require('dotenv').config({ path: + __dirname + '/.env' + NODE_ENV });
 
 var mysqlConnection = mysql.createPool({
     connectionLimit: 100,
     waitForConnections: true,
     queueLimit: 0,
-    host: '45.236.131.228', //45.236.131.228 process.env.HOST_DB,
-    user: 'root',//process.env.USER_DB,
-    password: 'uvas8827',//process.env.PASS_DB,
-    database: "tractordevice",//process.env.DATABASE_NAME,
-    port: 3306, // process.env.PORT_DB,
+    host: process.env.HOST_DB,
+    user: process.env.USER_DB,
+    password: process.env.PASS_DB,
+    database: process.env.DATABASE_NAME,
+    port: process.env.PORT_DB,
     debug: false,
     wait_timeout: 28800,
     connect_timeout: 10,

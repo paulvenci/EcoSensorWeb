@@ -1,13 +1,13 @@
 const logger = require('./libs/logger');
 const morgan = require('morgan');
 const express = require('express');
-const NODE_ENV = process.env.NODE_ENV || 'env';
-require('dotenv').config({ path: __dirname + '/.env' + NODE_ENV });
+const NODE_ENV = '.env';
+require('dotenv').config({ path: __dirname + '/.env' });
 const app = express();
 
 var bodyParser = require('body-parser');
 const cors = require('cors');
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT);
 
 // Midd
 app.use(morgan('dev'));
