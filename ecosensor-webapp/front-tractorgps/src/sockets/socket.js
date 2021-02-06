@@ -69,6 +69,7 @@ io.on('connection', function (socket) {
     // s4: tapa comb
     // s5: bat litio carga
     socket.on('estadoDispositivo', (data) => {
+
         console.log('Reciviendo data: ' + data.userName);
         dispositivo.estadoDispositivo(data.userName).then((val) => {
             // Devuelve la ubicación de todos los dispositivos del usuario
@@ -95,12 +96,14 @@ io.on('connection', function (socket) {
                     vehiculo_color: val[i].vehiculo_color,
                     vehiculo_tipo: val[i].vehiculo_tipo,
                     vehiculo_km_inicial: val[i].vehiculo_km_inicial,
-                    vehiculo_año: val[i].vehiculo_año,
+                    vehiculo_año: val[i].vehiculo_ano,
                     vehiculo_dispositivo_imei: val[i].vehiculo_dispositivo_imei,
                     vehiculo_horometro_inicial: val[i].vehiculo_horometro_inicial
                 }
                 dispositivos.push(item);
             }
+            console.log(dispositivos[0].fecha);
+
             socket.emit('estadoDispositivo', { dispositivos });
 
         }, (err) => {

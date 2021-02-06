@@ -195,10 +195,10 @@ async function createModalMapaReporte(_lat, _lon) {
     await modal.present();
     currentModal = modal;
     iniciaMapaModal(_lat, _lon, 'GM1');
-    iniciaMarcaModal(_lat, _lon);
+    iniciaMarcaModalReporte(_lat, _lon);
 }
 
-function iniciaMarcaModal(_lat, _lon) {
+function iniciaMarcaModalReporte(_lat, _lon) {
     var lati = parseFloat(_lat);
     var long = parseFloat(_lon);
     var markerModal;

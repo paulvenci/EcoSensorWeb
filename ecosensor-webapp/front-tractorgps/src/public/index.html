@@ -44,7 +44,13 @@
 <!-- <body onload="createModal()"> -->
 
 <body>
+
     <ion-app>
+        <ion-content>
+            <ion-refresher slot="fixed">
+                <ion-refresher-content></ion-refresher-content>
+            </ion-refresher>
+        </ion-content>
         <ion-menu side="start" content-id="main-content">
             <ion-header>
                 <ion-toolbar translucent>

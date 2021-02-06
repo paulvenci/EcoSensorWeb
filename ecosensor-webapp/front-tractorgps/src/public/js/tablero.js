@@ -16,13 +16,14 @@ function actualizaTablero() {
         var imei = document.querySelector("#imei-" + String(i));
 
 
-        ultConexion.textContent = 'Últ. conexión: ' + dispositivos[i].fecha;
+        ultConexion.textContent = 'Últ. conexión: ' + moment(dispositivos[i].fecha).add(3, 'h').format('DD-MM-YYYY, HH:mm');
         operadorNombre.textContent = dispositivos[i].operadorNombre;
         velocidad.textContent = dispositivos[i].velocidad;
         conAcc.textContent = dispositivos[i].conAcc;
         conBat.textContent = dispositivos[i].conBat;
         conTap.textContent = dispositivos[i].conComb;
         imei.textContent = dispositivos[i].imei;
+        console.log(dispositivos[i].fecha)
     }
 }
 
@@ -35,6 +36,7 @@ function cargaTableroCard() {
         } else {
             strControl = '<ion-toggle slot="start"></ion-toggle>';
         }
+
         var cardIon = `
         <ion-col class="ion-no-padding" size="12" size-lg="3" size-sm="6">
         <ion-card style="background-color: rgb(236, 236, 236);">
@@ -120,7 +122,7 @@ function cargaTableroCard() {
 
                 <ion-row class="ion-justify-content-center">
 
-                    <ion-button size="small" fill="outline" onclick="localizar(this.id);" id="btnPos-`+ String(i) + `">
+                    <ion-button size="small" fill="outline" onclick="localizar(this.id);" id="`+ i + `">
                         <ion-icon slot="start" name="location"></ion-icon> Posición
                     </ion-button>
                     <ion-button size="small" fill="outline">
@@ -143,9 +145,11 @@ function cargaTableroCard() {
 
 }
 function localizar(_id) {
-    var idDis = _id.split('-', 2)
+    //var idDis = _id.split('-', 2)
+    console.log(_id);
+
     //alert('Localizar ' + dispositivos[idDis[1]].latitud + ', ' + dispositivos[idDis[1]].longitud);
-    createModalMapa(idDis[1]);
+    createModalMapa(_id);
 
 }
 async function createModalMapa(_id) {
@@ -155,15 +159,20 @@ async function createModalMapa(_id) {
 
     await modal.present();
     currentModal = modal;
+
     iniciaMapaModal(dispositivos[_id].latitud, dispositivos[_id].longitud, 'GM1');
-    iniciaMarcaModal(_id);
+    console.log(dispositivos[_id].latitud, dispositivos[_id].longitud);
+
+    iniciaMarcaModalTablero(_id);
 }
-function iniciaMarcaModal(_i) {
+function iniciaMarcaModalTablero(_i) {
     var lati = parseFloat(dispositivos[_i].latitud);
     var long = parseFloat(dispositivos[_i].longitud);
+    console.log(lati);
+    console.log(long);
     var markerModal;
     markerModal = L.marker([lati, long], { icon: greenIcon })
-        .addTo(myMapTablero)
+        .addTo(myMapModal)
         .bindPopup(
             '<strong>Operario</strong>: ' + dispositivos[_i].operadorNombre + `<br>
                  <strong>Velocidad</strong>: ` + dispositivos[_i].velocidad + ` km/h<br>
