@@ -1,8 +1,10 @@
 const router = require('express').Router();
+const path = require('path');
+
 
 //rutas
 router.get('/', (req, res) => {
-    res.render('index');
+    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 })
 
 router.get('/estadistica', (req, res) => {

@@ -1,0 +1,104 @@
+{
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "paulvenci"
+      },
+      "category": "Colores",
+      "creation_time": "2021-02-08T01:38:40.976Z",
+      "description": {
+        "content": "Aplicar colores a la interfaz",
+        "mime": "text/markdown"
+      },
+      "id": "6",
+      "prio": 4,
+      "references": [],
+      "title": "Colores"
+    },
+    {
+      "assignedTo": {
+        "name": "paulvenci"
+      },
+      "category": "Modal",
+      "creation_time": "2021-02-08T01:22:38.654Z",
+      "description": {
+        "content": "Revisar el problema del zoom en mapa modal",
+        "mime": "text/markdown"
+      },
+      "id": "3",
+      "prio": 3,
+      "references": [],
+      "title": "Modal Mapa Zoom",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "paulvenci"
+      },
+      "category": "Inicio",
+      "creation_time": "2021-02-08T01:20:00.034Z",
+      "description": {
+        "content": "Mostrar teblero al iniciar la aplicación",
+        "mime": "text/markdown"
+      },
+      "id": "2",
+      "prio": 2,
+      "references": [],
+      "title": "Inicio"
+    },
+    {
+      "assignedTo": {
+        "name": "paulvenci"
+      },
+      "category": "Reporte",
+      "creation_time": "2021-02-08T01:24:11.183Z",
+      "description": {
+        "content": "Limpiar listado de tarjetas en los reportes",
+        "mime": "text/markdown"
+      },
+      "id": "4",
+      "prio": 1,
+      "references": [],
+      "title": "Reporte",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "paulvenci"
+      },
+      "category": "Reporte",
+      "creation_time": "2021-02-08T01:19:04.715Z",
+      "description": {
+        "content": "Realizar reporte por horas del operario",
+        "mime": "text/markdown"
+      },
+      "details": {
+        "content": "Al ingresar a la app, mostrar el tablero",
+        "mime": "text/markdown"
+      },
+      "id": "1",
+      "prio": 1,
+      "references": [],
+      "title": "Reporte"
+    }
+  ],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "paulvenci"
+      },
+      "category": "Inicio",
+      "creation_time": "2021-02-08T01:25:09.280Z",
+      "description": {
+        "content": "Relizar pantalla de inicio de presentación de la aplicación",
+        "mime": "text/markdown"
+      },
+      "id": "5",
+      "prio": 1,
+      "references": [],
+      "title": "Inicio"
+    }
+  ],
+  "testing": [],
+  "done": []
+}

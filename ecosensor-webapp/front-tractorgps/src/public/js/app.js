@@ -19,7 +19,6 @@ async function openMenu() {
 
 //*! Conectar Socket Web
 socketContectar('104.248.67.211', '4500');
-// socketContectar('localhost', '4500');
 
 socketON();
 //*! Socket Web
@@ -170,3 +169,10 @@ customElements.define('modal-content-mapa', class ModalContent extends HTMLEleme
     `;
   }
 });
+
+function inicia() {
+  // alert("Iniciado")
+  createModal();
+
+}
+window.onload = inicia;

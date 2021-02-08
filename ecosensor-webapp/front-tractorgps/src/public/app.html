@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOSENSOR-TRACKTOR</title>
+    <!-- IONIC -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module">
+        import { modalController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+        window.modalController = modalController;
+    </script>
+    <script type="module">
+        import { menuController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+        window.menuController = menuController;
+    </script>
+    <script type="module">
+        import { loadingController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+        window.loadingController = loadingController;
+    </script>
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <!-- MapBox -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Google Maps -->
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYK-b19GP_XhvhPPkazsCxSXAGi7pYa5A"></script>
+
+</head>
+<!-- <body onload="createModal()"> -->
+
+<body>
+
+    <ion-app>
+        <ion-content>
+            <ion-refresher slot="fixed">
+                <ion-refresher-content></ion-refresher-content>
+            </ion-refresher>
+        </ion-content>
+        <ion-menu side="start" content-id="main-content">
+            <ion-header>
+                <ion-toolbar translucent>
+                    <ion-title>Menu</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content fullscreen>
+                <ion-list>
+                    <ion-item>
+                        <ion-icon name="mail" slot="start"></ion-icon>
+                        <!-- Pagina informativa -->
+                        <ion-label>Home</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="paper-plane" slot="start"></ion-icon>
+                        <ion-label>Outbox</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="heart" slot="start"></ion-icon>
+                        <ion-label>Favorites</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="archive" slot="start"></ion-icon>
+                        <ion-label>Archived</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="trash" slot="start"></ion-icon>
+                        <ion-label>Trash</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="warning" slot="start"></ion-icon>
+                        <ion-label>Spam</ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+
+        <div class="ion-page" id="main-content">
+            <ion-header translucent>
+                <ion-toolbar>
+                    <ion-buttons slot="start">
+                        <ion-button expand="block" onclick="openMenu()">
+                            <ion-icon name="menu" size="large"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
+                    <ion-title>EcoSensor - Tracktor</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+                <ion-tabs>
+                    <ion-tab tab="tab-tablero">
+                        <ion-nav id="tablero" style="padding-bottom: 40px;"></ion-nav>
+                    </ion-tab>
+
+                    <ion-tab tab="tab-reporte">
+                        <ion-nav id="reporte"></ion-nav>
+                    </ion-tab>
+
+                    <ion-tab tab="tab-mapa">
+                        <ion-content fullscreen class="ion-padding">
+                            <ion-fab horizontal="end" vertical="top" slot="fixed">
+                                <ion-fab-button>
+                                    <ion-icon name="add"></ion-icon>
+                                </ion-fab-button>
+                                <ion-fab-list>
+                                    <ion-fab-button color="light">
+                                        <ion-icon name="logo-facebook"></ion-icon>
+                                    </ion-fab-button>
+                                    <ion-fab-button color="light">
+                                        <ion-icon name="logo-twitter"></ion-icon>
+                                    </ion-fab-button>
+                                    <ion-fab-button color="light">
+                                        <ion-icon name="logo-vimeo"></ion-icon>
+                                    </ion-fab-button>
+                                </ion-fab-list>
+                            </ion-fab>
+                        </ion-content>
+                        <ion-nav id="mapa"></ion-nav>
+                    </ion-tab>
+
+                    <ion-tab-bar slot="bottom">
+                        <ion-tab-button tab="tab-tablero" onclick="cargaTablero();">
+                            <ion-icon name="bar-chart"></ion-icon>
+                            <ion-label>Tablero</ion-label>
+                        </ion-tab-button>
+
+                        <ion-tab-button tab="tab-reporte" onclick="cargaReporte()">
+                            <ion-icon name="newspaper"></ion-icon>
+                            <ion-label>Reporte</ion-label>
+                        </ion-tab-button>
+
+                        <ion-tab-button tab="tab-mapa" onclick="cargaMapa()">
+                            <ion-icon name="map"></ion-icon>
+                            <ion-label>Mapa</ion-label>
+                        </ion-tab-button>
+                    </ion-tab-bar>
+                </ion-tabs>
+            </ion-content>
+        </div>
+    </ion-app>
+
+    <script src="js/libs/jquery-3.5.1.min.js"></script>
+    <script src="js/libs/moment.js"></script>
+    <script src="js/libs/socket.io.js"></script>
+    <script src="js/socket.js"></script>
+    <script src="js/dispositivo.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/tablero.js"></script>
+    <script src="js/reporte.js"></script>
+    <script src="js/mapa.js"></script>
+
+</body>
+
+</html>
