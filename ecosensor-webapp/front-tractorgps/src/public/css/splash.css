@@ -8,11 +8,11 @@ body, html {
   
   .bg-image {
     /* The image used */
-    background-image: url("../images/tractor.png");
+    background-image: url("../images/430.png");
   
     /* Add the blur effect */
-    filter: blur(4px);
-    -webkit-filter: blur(4px);
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
   
     /* Full height */
     height: 100%;
@@ -39,6 +39,7 @@ body, html {
     padding: 20px;
     text-align: center;
     border-radius: 10px;
+    font-family: Verdana;
   }
 
   .fade-in {

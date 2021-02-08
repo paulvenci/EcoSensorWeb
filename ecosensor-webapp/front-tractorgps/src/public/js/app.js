@@ -172,7 +172,7 @@ customElements.define('modal-content-mapa', class ModalContent extends HTMLEleme
 
 function inicia() {
   // alert("Iniciado")
-  createModal();
-
+  // createModal();
+  cargaTablero();
 }
 window.onload = inicia;
