@@ -35,21 +35,6 @@
       "assignedTo": {
         "name": "paulvenci"
       },
-      "category": "Inicio",
-      "creation_time": "2021-02-08T01:20:00.034Z",
-      "description": {
-        "content": "Mostrar teblero al iniciar la aplicación",
-        "mime": "text/markdown"
-      },
-      "id": "2",
-      "prio": 2,
-      "references": [],
-      "title": "Inicio"
-    },
-    {
-      "assignedTo": {
-        "name": "paulvenci"
-      },
       "category": "Reporte",
       "creation_time": "2021-02-08T01:24:11.183Z",
       "description": {
@@ -61,7 +46,9 @@
       "references": [],
       "title": "Reporte",
       "type": "bug"
-    },
+    }
+  ],
+  "in-progress": [
     {
       "assignedTo": {
         "name": "paulvenci"
@@ -82,7 +69,22 @@
       "title": "Reporte"
     }
   ],
-  "in-progress": [
+  "testing": [
+    {
+      "assignedTo": {
+        "name": "paulvenci"
+      },
+      "category": "Inicio",
+      "creation_time": "2021-02-08T01:20:00.034Z",
+      "description": {
+        "content": "Mostrar teblero al iniciar la aplicación",
+        "mime": "text/markdown"
+      },
+      "id": "2",
+      "prio": 2,
+      "references": [],
+      "title": "Inicio"
+    },
     {
       "assignedTo": {
         "name": "paulvenci"
@@ -99,6 +101,5 @@
       "title": "Inicio"
     }
   ],
-  "testing": [],
   "done": []
 }
