@@ -3,15 +3,15 @@
     <ion-card>
         <ion-card-title class="ion-text-center">Reporte de actividades</ion-card-title>
         <ion-card-content>
-            <ion-radio-group value="vehiculo">
+            <ion-radio-group id="radioGrupoRep" vallue="vehiculo">
                 <ion-item lines="none">
                     <ion-label>Vehiculo</ion-label>
-                    <ion-radio slot="end" value="vehiculo" onclick="habilitaVehiculoSel()"></ion-radio>
+                    <ion-radio id="rdVehiculo" slot="end" value="vehiculo" onclick="habilitaVehiculoSel()"></ion-radio>
                 </ion-item>
 
                 <ion-item>
                     <ion-label>Operario</ion-label>
-                    <ion-radio slot="end" value="operario" onclick="habilitaOperarioSel()"></ion-radio>
+                    <ion-radio id="rdOperario" slot="end" value="operario" onclick="habilitaOperarioSel()"></ion-radio>
                 </ion-item>
             </ion-radio-group>
 
@@ -67,7 +67,8 @@
 
         </ion-list>
     </ion-card>
-    <div id="iniRep"></div>
+    <div name="inicioReporte" id="iniRep"></div>
+
     <div id="eveRep"></div>
     <div id="finRep"></div>
 
@@ -82,15 +83,22 @@
 
 </ion-content>
 
-<script>
 
+
+<div style="visibility: hidden;" id="map-templateRep"></div>
+<script>
+    pestaña = 'reporte';
+    document.getElementById("radioGrupoRep").value = "vehiculo"
     estadoDispositivo('paulvenci@gmail.com')
+    oprarioLista('paulvenci@gmail.com')
     clearInterval(timeTablero);
     clearInterval(timeMapa);
 
-    cargaReporteON();
     tarjetaCreada = false;
-
+    vehiculo = document.getElementById('selectVehiculo');
+    operario = document.getElementById('selectOperario');
+    vehiculo.disabled = false;
+    operario.disabled = true;
 
 
 </script>

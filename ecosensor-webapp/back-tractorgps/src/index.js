@@ -12,7 +12,7 @@ app.set('port', process.env.PORT);
 // Midd
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 app.use(cors());
 // app.use(bodyParser.urlencoded({ extended: true }));
 

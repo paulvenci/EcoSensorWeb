@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 
 
+
 // const Usuario = require('../src/moddels/usuario');
 
 const cron = require('cron').CronJob;
@@ -22,15 +23,22 @@ const server = app.listen(process.env.PORT, () => {
 // app.set('views', path.join(__dirname, 'views'));
 
 
-//rutas
-app.use(require('./routes'));
-
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+
+//rutas
+app.use(require('./routes'));
 
 
 //WebSocket
 const SocketIo = require('socket.io');
 module.exports.io = SocketIo(server);
 require('./sockets/socket');
+require('./sockets/reporte');
+require('./sockets/dispositivo');
+require('./sockets/operario');
+require('./sockets/usuario');
+
+
 

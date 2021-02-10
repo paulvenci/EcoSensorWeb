@@ -3,25 +3,27 @@ let timeTablero;
 let timeMapa;
 let dispositivos = [];
 let timerIniciado;
-let tarjetaCreada;
+let tarjetaCreada = false;
 let myMap;
 let mapaIniciado = false;
 let marker = [];
-tarjetaCreada = false;
+let pestaña = '';
 
 // Variables para reporte
 let vehiculo;
-let operario;
+
 
 async function openMenu() {
   await menuController.open();
 }
 
 //*! Conectar Socket Web
-socketContectar('104.248.67.211', '4500');
+// socketContectar('104.248.67.211', '4500');
+socketContectar('localhost', '4500');
 
+
+//*! Socket Web ON
 socketON();
-//*! Socket Web
 
 function cargaSocketEmit() {
   socket.emit('obtieneDatosUsuario',

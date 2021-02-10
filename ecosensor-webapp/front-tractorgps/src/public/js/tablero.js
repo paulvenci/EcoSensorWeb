@@ -1,5 +1,5 @@
 function cargaTablero() {
-    console.log('tab');
+    // console.log('tab');
     $('#tablero').load('html/tablero.html');
     cargaTableroCard();
 
@@ -23,12 +23,12 @@ function actualizaTablero() {
         conBat.textContent = dispositivos[i].conBat;
         conTap.textContent = dispositivos[i].conComb;
         imei.textContent = dispositivos[i].imei;
-        console.log(dispositivos[i].fecha)
+        // console.log(dispositivos[i].fecha)
     }
 }
 
 function cargaTableroCard() {
-    console.log('card');
+    // console.log('card');
 
     for (var i = 0; i < dispositivos.length; i++) {
         if (dispositivos[i].control1 == 'Activo') {
@@ -138,15 +138,15 @@ function cargaTableroCard() {
 
         $('#cards').append(cardIon);
 
-        console.log('Función dispositivoListar:');
-        console.log(dispositivos);
+        // console.log('Función dispositivoListar:');
+        // console.log(dispositivos);
         tarjetaCreada = true;
     }
 
 }
 function localizar(_id) {
     //var idDis = _id.split('-', 2)
-    console.log(_id);
+    // console.log(_id);
 
     //alert('Localizar ' + dispositivos[idDis[1]].latitud + ', ' + dispositivos[idDis[1]].longitud);
     createModalMapa(_id);
@@ -161,15 +161,15 @@ async function createModalMapa(_id) {
     currentModal = modal;
 
     iniciaMapaModal(dispositivos[_id].latitud, dispositivos[_id].longitud, 'GM1');
-    console.log(dispositivos[_id].latitud, dispositivos[_id].longitud);
+    // console.log(dispositivos[_id].latitud, dispositivos[_id].longitud);
 
     iniciaMarcaModalTablero(_id);
 }
 function iniciaMarcaModalTablero(_i) {
     var lati = parseFloat(dispositivos[_i].latitud);
     var long = parseFloat(dispositivos[_i].longitud);
-    console.log(lati);
-    console.log(long);
+    // console.log(lati);
+    // console.log(long);
     var markerModal;
     markerModal = L.marker([lati, long], { icon: greenIcon })
         .addTo(myMapModal)
@@ -191,19 +191,5 @@ function cargaDispoEmit(_nombreUsuario) {
         nombre_usuario: _nombreUsuario
     });
 }
-//* SOCKET ON
-function cargaTableroON() {
-    socket.on('estadoDispositivo', (data) => {
-        console.log('estadoDispositivo => On');
-        dispositivoListar(data);
-        console.log(tarjetaCreada);
 
-        if (tarjetaCreada) {
-            actualizaTablero();
-        } else {
-            cargaTableroCard();
-
-        }
-    });
-}
 

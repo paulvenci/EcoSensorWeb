@@ -1,8 +1,6 @@
-
-
 //* SOCKET EMIT
 function estadoDispositivo(_userName) {
-    console.log('estadoDispositivo => Emit');
+    // console.log('estadoDispositivo => Emit');
     socket.emit('estadoDispositivo', {
         userName: _userName
     })
@@ -11,7 +9,7 @@ function estadoDispositivo(_userName) {
 //* FUNCION LISTAR DISPOSITIVOS
 function dispositivoListar(datos) {
 
-    console.log('DispositivoListar');
+    // console.log('DispositivoListar');
     dispositivos.length = 0;
 
     for (var i = 0; i < datos.dispositivos.length; i++) {
@@ -89,6 +87,6 @@ function dispositivoListar(datos) {
             vehiculo_horometro_inicial: datos.dispositivos[i].vehiculo_horometro_inicial
         }
         dispositivos.push(datosDispo);
-        console.log(dispositivos);
+        //  console.log(dispositivos);
     }
 }

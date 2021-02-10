@@ -4,11 +4,7 @@ function cargaMapa() {
 }
 
 function cargaMapaON() {
-    socket.on('estadoDispositivo', (data) => {
-        // console.log('estadoDispositivo => On');
-        dispositivoListar(data);
-        recargaMapa();
-    });
+
 }
 
 function recargaMapa() {
