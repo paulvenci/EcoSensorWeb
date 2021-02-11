@@ -7,10 +7,12 @@ function oprarioLista(_userName) {
 }
 let operarioObj = [];
 
-// operario.length = 0;
 
 function operarioListar(data) {
+    operarioObj.length = 0;
     var datosOpe;
+    console.log('datos oper: ' + String(data.length));
+
     data.forEach(element => {
         datosOpe = {
             nombre: element.operario_nombre,
@@ -21,7 +23,6 @@ function operarioListar(data) {
             uid: element.operario_uid
         }
         operarioObj.push(datosOpe);
+        console.log(operarioObj);
     })
-    console.log(operarioObj);
-
 }

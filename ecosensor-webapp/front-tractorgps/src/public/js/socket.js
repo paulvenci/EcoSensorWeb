@@ -39,6 +39,7 @@ function socketON() {
                 break;
             case 'reporte':
                 vehiculoSelect();
+                operarioSelect();
                 break;
             case 'mapa':
                 recargaMapa();
@@ -51,11 +52,12 @@ function socketON() {
     // ─── REPORTE ────────────────────────────────────────────────────────────────────
     //
     socket.on('reporteVehiculo', (data) => {
-        reporteVehiculo(data.reporteFinal);
+
+        reporteVehiculo(data.val);
     })
 
     socket.on('operarioLista', (data) => {
-        // console.log('Socket ON = operarioLista' + data);
+        console.log('Socket ON = operarioLista' + data.length);
         operarioListar(data);
         operarioSelect();
     })
