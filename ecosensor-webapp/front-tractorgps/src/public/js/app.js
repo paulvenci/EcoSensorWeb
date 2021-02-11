@@ -98,8 +98,9 @@ async function iniciaCargando() {
   await loading.present();
 }
 let myMapModal;
+let st_line;
 
-function iniciaMapaModal(_lat, _lon, tipoMapa) {
+function iniciaMapaModal(_lat, _lon, tipoMapa, muestraRec, recorrido) {
   lati = parseFloat(_lat);
   long = parseFloat(_lon);
   mapaIniciado = true;
@@ -147,7 +148,36 @@ function iniciaMapaModal(_lat, _lon, tipoMapa) {
       }).addTo(myMapModal);
       break;
   }
+  // if (muestraRec == true) {
+  //   var plArray = [];
+  //   recorrido.forEach(element => {
+  //     plArray.push(L.polyline(element).addTo(myMapModal));
+  //   });
+  //   L.polylineDecorator(recorrido, {
+  //     patterns: [
+  //       { offset: 25, repeat: 50, symbol: L.Symbol.arrowHead({ pixelSize: 15, pathOptions: { fillOpacity: 1, weight: 0 } }) }
+  //     ]
+  //   }).addTo(myMapModal);
+  // }
+  if (muestraRec == true) {
+    //  var marker2 = L.Marker.movingMarker(recorrido, duracion, { autostart: true }).addTo(myMap);
+    // L.polyline(recorrido, { color: 'red' }).addTo(myMap);
+
+    st_line = L.polyline(recorrido, {
+      color: 'red',
+      weight: 3,
+      opacity: 0.5,
+      smoothFactor: 1
+    }).addTo(myMapModal);
+
+
+    // marker2.on('end', function () {
+    //     marker2.bindPopup('<b>Fin recorrido !</b>', { closeOnClick: false })
+    //         .openPopup();
+    // });
+  }
 }
+
 var greenIcon = L.icon({
   iconUrl: 'images/tractor-verde.png',
   iconSize: [34, 48], // size of the icon

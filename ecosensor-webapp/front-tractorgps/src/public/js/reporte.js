@@ -15,6 +15,7 @@ function muestraReporteEmit() {
     $('#iniRep').empty();
     $('#eveRep').empty();
     $('#finRep').empty();
+    $('#resumenRep').empty();
 
     _imei = vehiculo.value.imei;
     _fechaInicio = _fechaInicio + ' ' + _horaInicio;
@@ -43,9 +44,18 @@ function muestraReporteEmit() {
             })
     }
 }
-
+let dataReporteVeh;
+let resultadoRepOpe;
 function reporteVehiculo(data) {
+    dataReporteVeh = data;
+    console.log(data);
 
+    // Resumen
+    resReporte = document.querySelector('#resumenRep');
+    let strResRep = resRepVeh(data[3]);
+    let eleResRep = document.createElement("div");
+    eleResRep.innerHTML = strResRep;
+    resReporte.appendChild(eleResRep);
 
     // Inicio
     iniReporte = document.querySelector('#iniRep');
@@ -72,57 +82,13 @@ function reporteVehiculo(data) {
 
 function reporteOperario(data) {
     console.log(data.val.totalHoras);
-    myMapRep = L.map("map-templateRep").setView([0, 0], 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'pma'
-    }).addTo(myMapRep);
-    let recorrido = [];
-    let sumaVelocidad = 0;
-    let velocidad = [];
-    let distancia = 0;
-    let contSumVel = 0;
-    data.val.fullDataRep.forEach((element, i, array) => {
-        vel = parseInt(element.velocidad);
-        //console.log('Velocidad= ' + String(vel));
-
-        if (element.latitud !== null && element.longitud !== null && vel >= 1) {
-            var latlng1 = L.latLng(element.latitud, element.longitud);
-            var latlng2 = L.latLng(array[i + 1].latitud, array[i + 1].longitud);
-            //console.log('Distancia instantanea = ' + String(myMapRep.distance(latlng1, latlng2)));
-
-            if (myMapRep.distance(latlng1, latlng2) !== NaN) {
-                recorrido.push([element.latitud, element.longitud]);
-                // duracion.push(1000);
-                velocidad.push(element.velocidad);
-                sumaVelocidad = sumaVelocidad + parseInt(element.velocidad);
-                contSumVel += 1;
-                if (parseInt(myMapRep.distance(latlng1, latlng2)) > 5) {
-                    distancia += parseInt(myMapRep.distance(latlng1, latlng2));
-                    //console.log('Distancia acumulada = ' + String(distancia));
-                }
-            }
-        }
-    })
-    var velProm = 0;
-    var velMax = 0;
-    if (contSumVel > 0) {
-        velProm = (sumaVelocidad / contSumVel).toFixed(1);
-        velMax = Math.max(...velocidad);
-    }
-
-    var resultadoRepOpe = {
-        totalHoras: (data.val.totalHoras).toFixed(1),
-        totalDistancia: distancia,
-        velocidadMaxima: velMax,
-        velocidadPromedio: velProm
-    }
+    resultadoRepOpe = data.val;
     // Inicio
     iniReporte = document.querySelector('#iniRep');
-    let strIniciaRep = tarjetaReporteOperario(resultadoRepOpe);
+    let strIniciaRep = resRepOpe(resultadoRepOpe);
     let eleIniRep = document.createElement("div");
     eleIniRep.innerHTML = strIniciaRep;
     iniReporte.appendChild(eleIniRep);
-    myMapRep.remove();
 }
 
 function habilitaVehiculoSel() {
@@ -147,6 +113,7 @@ function vehiculoSelect() {
     vehiculo = document.getElementById('selectVehiculo');
 
     $('#selectVehiculo').empty();
+    $('#selectOperario').empty();
 
     vehiculo.disabled = false;
     dispositivos.compareWith = compareWithFnV;
@@ -168,6 +135,8 @@ function operarioSelect() {
     $('#selectOperario').empty();
     operarioSel.disabled = true;
     operarioObj.compareWith = compareWithFnO;
+    // console.log(operarioObj.length);
+
     operarioObj.forEach((option, i) => {
         let selectOptionOpe = document.createElement('ion-select-option');
         selectOptionOpe.value = option;
@@ -254,7 +223,16 @@ async function createModalMapaReporte(_lat, _lon) {
     iniciaMapaModal(_lat, _lon, 'GM1');
     iniciaMarcaModalReporte(_lat, _lon);
 }
+async function createModalMapaReporteRecorrido(_lat, _lon, recorridoArr) {
+    const modal = await modalController.create({
+        component: 'modal-content-mapa'
+    });
 
+    await modal.present();
+    currentModal = modal;
+    iniciaMapaModal(_lat, _lon, 'GM1', true, recorridoArr);
+    // iniciaMarcaModalReporte(_lat, _lon);
+}
 function iniciaMarcaModalReporte(_lat, _lon) {
     var lati = parseFloat(_lat);
     var long = parseFloat(_lon);
@@ -462,7 +440,9 @@ function inicioRep(datos) {
     return (tarjetaReporteInicio);
 }
 
-function tarjetaReporteOperario(datos) {
+function resRepOpe(datos) {
+
+
     var tarjRepOpe =
         `
     <ion-col id="inicioRepTarj" class="ion-no-padding" size="12" size-lg="3" size-sm="6">
@@ -474,23 +454,24 @@ function tarjetaReporteOperario(datos) {
             </ion-button>
             <!-- <ion-card-subtitle class="ion-text-center">` + _fechaInicio + ` </ion-card-subtitle> -->
         </ion-card-header>
+
         <ion-grid>
             <ion-row class="rowCard">
                 <ion-col size="4">
                     <ion-label class="divCard">Dist. recorrida</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label class="divCard">` + String(datos.totalDistancia) + ` m  [` + String((datos.totalDistancia / 1000).toFixed(1)) + ` km] </ion-label>
+                    <ion-label class="divCard">` + String(datos.distancia) + ` </ion-label>
                 </ion-col>
             </ion-row>
             <hr class="hrCard">
-
+              
             <ion-row class="rowCard">
                 <ion-col size="4">
                     <ion-label class="divCard">Tiempo activo</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label class="divCard">`+ String(datos.totalHoras) + ` hrs</ion-label>
+                    <ion-label class="divCard">`+ String(datos.totalHoras) + `</ion-label>
                 </ion-col>
             </ion-row>
             <hr class="hrCard">
@@ -500,7 +481,7 @@ function tarjetaReporteOperario(datos) {
                     <ion-label class="divCard">Vel. máx</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label class="divCard">` + String(datos.velocidadMaxima) + ` km/h</ion-label>
+                    <ion-label class="divCard">` + String(datos.velMax) + `</ion-label>
                 </ion-col>
             </ion-row>
             <hr class="hrCard">
@@ -510,14 +491,13 @@ function tarjetaReporteOperario(datos) {
                     <ion-label class="divCard">Vel. prom</ion-label>
                 </ion-col>
                 <ion-col>
-                    <ion-label class="divCard">` + String(datos.velocidadPromedio) + ` km/h</ion-label>
+                    <ion-label class="divCard">` + String(datos.velProm) + `</ion-label>
                 </ion-col>
             </ion-row>
             <hr class="hrCard">
 
             <ion-row class="ion-justify-content-center">
-                <ion-button size="small" fill="outline" id="pos-inicio&` + datos.latitud + ',' + datos.longitud + `"
-                    onclick="localizarReporte(this.id);">
+                <ion-button size="small" fill="outline" onclick="recorridoOpe();">
                     <ion-icon slot="start" name="location"></ion-icon> Recorrido
                 </ion-button>
             </ion-row>
@@ -529,4 +509,101 @@ function tarjetaReporteOperario(datos) {
     return (tarjRepOpe);
 }
 
+function resRepVeh(datos) {
 
+    let tarResVeh =
+        `
+    <ion-col id="inicioRepTarj" class="ion-no-padding" size="12" size-lg="3" size-sm="6">
+            <ion-card style="background-color: rgb(236, 236, 236);">
+                <ion-card-header>
+                    <ion-button fill="clear" expand="full">
+                        <ion-icon slot=" start" name="car" size="large">
+                        </ion-icon> Resumen
+                    </ion-button>
+                    <!-- <ion-card-subtitle class="ion-text-center">` + _fechaInicio + ` </ion-card-subtitle> -->
+                </ion-card-header>
+                <ion-grid>
+                    <ion-row class="rowCard">
+                        <ion-col size="6">
+                            <ion-label class="divCard">Dist. recorrida</ion-label>
+                        </ion-col>
+                        <ion-col>
+                            <ion-label class="divCard"> ` + datos.distancia + `</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <hr class="hrCard">
+
+                    <ion-row class="rowCard">
+                        <ion-col size="6">
+                            <ion-label class="divCard">Vel. máx</ion-label>
+                        </ion-col>
+                        <ion-col>
+                            <ion-label class="divCard">` + datos.velocidadMaxima + `</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <hr class="hrCard">
+
+                    <ion-row class="rowCard">
+                        <ion-col size="6">
+                            <ion-label class="divCard">Vel. prom.</ion-label>
+                        </ion-col>
+                        <ion-col>
+                            <ion-label class="divCard"> ` + datos.velocidadPromedio + ` </ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <hr class="hrCard">
+
+                  <!--  <ion-row class="rowCard">
+                        <ion-col size="6">
+                            <ion-label class="divCard"> N° apertura tapa</ion-label>
+                        </ion-col>
+                        <ion-col>
+                            <ion-label class="divCard"> ` + datos.contSumTapa + ` </ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <hr class="hrCard">
+
+                    <ion-row class="rowCard">
+                        <ion-col size="6">
+                            <ion-label class="divCard">N° encendido acc</ion-label>
+                        </ion-col>
+                        <ion-col>
+                            <ion-label style="padding-right: 10px;" class="divCard"> ` + datos.contSumAcc + ` </ion-label>
+                            </ion-icon>
+                        </ion-col>
+                    </ion-row>
+                    <hr class="hrCard">
+
+                    <ion-row class="rowCard">
+                        <ion-col size="6">
+                            <ion-label class="divCard">Tiempo activo</ion-label>
+                        </ion-col>
+                        <ion-col>
+                            <ion-label class="divCard"> ` + datos.tiempoActivo + ` </ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <hr class="hrCard"> -->
+
+                    <ion-row class="ion-justify-content-center">
+                        <ion-button size="small" fill="outline"
+                            onclick="recorridoVeh();">
+                            <ion-icon slot="start" name="location"></ion-icon> Recorrido
+                        </ion-button>
+                    </ion-row>
+
+                </ion-grid>
+            </ion-card>
+        </ion-col>
+    `
+    return (tarResVeh);
+}
+
+function recorridoVeh() {
+    createModalMapaReporteRecorrido(dataReporteVeh[4][0][0], dataReporteVeh[4][0][1], dataReporteVeh[4]);
+}
+function recorridoOpe() {
+    console.log(resultadoRepOpe.recorrido[0]);
+    console.log(resultadoRepOpe.recorrido[1]);
+
+    createModalMapaReporteRecorrido(resultadoRepOpe.recorrido[0][0], resultadoRepOpe.recorrido[0][1], resultadoRepOpe.recorrido);
+}
