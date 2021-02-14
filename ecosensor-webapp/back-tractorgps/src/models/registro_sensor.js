@@ -140,7 +140,6 @@ class Registro_sensor {
                 }
 
                 Control.getAllbyImei(registro_sensor.dispositivo_imei, (err, data) => {
-                    console.log('data: ' + data);
 
                     if (err) {
                         if (err.kind === "not_found") {
@@ -149,7 +148,6 @@ class Registro_sensor {
                             result(err, `Hubo un error al intentar acceder imei ${registro_sensor.dispositivo_imei}`);
                         }
                     } else {
-                        console.log({ data });
                         result(null, data);
                     };
                 });

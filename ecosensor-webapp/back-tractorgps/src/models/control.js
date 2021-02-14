@@ -1,4 +1,5 @@
 const mysqlConnection = require('../config/datasource');
+const { resume } = require('../libs/logger');
 
 class Control {
     constructor(control) {
@@ -23,7 +24,19 @@ class Control {
                 return;
             }
             if (rows.length) {
-                result(null, rows);
+
+                var valor = [];
+                var resultado = '';
+                rows.forEach(element => {
+                    var nombreSensor = element.nombre;
+                    var datoSensor = element.estado;
+                    resultado += '"' + String(nombreSensor) + '":' + String(datoSensor) + ',';
+                });
+                resultado = '{' + resultado.substring(0, resultado.length - 1) + '}';
+                // resultado = JSON.stringify(resultado);
+                console.log(resultado);
+
+                result(null, resultado);
                 return;
             }
             result({ kind: "not_found" }, null);
