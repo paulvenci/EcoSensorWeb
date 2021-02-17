@@ -9,6 +9,7 @@ app.use('/api/sensor', require('../routes/sensor'));
 app.use('/api/registro_sensor', require('../routes/registro_sensor'));
 app.use('/api/control', require('../routes/control'));
 app.use('/api/vehiculo', require('../routes/vehiculo'));
+app.use('/', require('../routes/root'));
 
 
 module.exports = app;

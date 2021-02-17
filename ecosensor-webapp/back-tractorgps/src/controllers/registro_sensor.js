@@ -58,15 +58,15 @@ exports.create = (req, res) => {
     if (!req.body) {
         res.status(400).send({ message: "El contenido no puede venir vacío" });
     }
-    //console.log(req.body);
-    var now = new Date();
 
-    console.log(moment(now).format('YYYY-MM-DD HH:mm:ss'));
+    var testDateUtc = moment.utc();
+    var localDate = moment(testDateUtc).utcOffset(-180); //set timezone offset in minutes
+    console.log('Hora Local: ' + localDate.format());
 
     cuerpo = {
         dispositivo_imei: req.body.imei,
         fullData: 'fullData',
-        fecha_hora: moment(now).format('YYYY-MM-DD HH:mm:ss'),
+        fecha_hora: moment(localDate).format('YYYY-MM-DD HH:mm:ss'),
         latitud: req.body.lat,
         longitud: req.body.lon,
         velocidad: req.body.vel,
