@@ -16,9 +16,9 @@ function actualizaTablero() {
         var imei = document.querySelector("#imei-" + String(i));
 
 
-        ultConexion.textContent = 'Últ. conexión: ' + moment(dispositivos[i].fecha).add(3, 'h').format('DD-MM-YYYY, HH:mm');
+        ultConexion.textContent = 'Últ. conexión: ' + dispositivos[i].fecha;
         operadorNombre.textContent = dispositivos[i].operadorNombre;
-        velocidad.textContent = dispositivos[i].velocidad;
+        velocidad.textContent = dispositivos[i].velocidad + ' km/h';
         conAcc.textContent = dispositivos[i].conAcc;
         conBat.textContent = dispositivos[i].conBat;
         conTap.textContent = dispositivos[i].conComb;
@@ -73,7 +73,7 @@ function cargaTableroCard() {
                         <ion-label class="divCard">Velocidad</ion-label>
                     </ion-col>
                     <ion-col>
-                        <ion-label class="divCard" id="velocidad-`+ String(i) + `">` + dispositivos[i].velocidad + `</ion-label>
+                        <ion-label class="divCard" id="velocidad-`+ String(i) + `">` + dispositivos[i].velocidad + `km/h</ion-label>
                     </ion-col>
                 </ion-row>
                 <hr class="hrCard">
